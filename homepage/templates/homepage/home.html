@@ -1,3 +1,18 @@
 {% extends "homepage/main.html" %}
 {% block body %}
+<h1 class="text-center mb-3">Read our articles!</h1>
+<div class="card-columns md-3 text-center">
+{% for post in articles %}
+      <div class="card border-secondary mb-3">
+        <div class="card-header bg-transparent border-secondary">{{post.title}}</div>
+        <div class="card-body text-secondary">
+          <p class="card-text">{{post.smalltext}}...</p>
+        </div>
+        <div class="card-footer bg-transparent border-secondary">
+          <a href="{% url 'article-detail' post.id %}" class="btn btn-secondary">Read More</a>
+        </div>
+      </div>
+{% endfor %}
+</div>
+
 {% endblock %}
