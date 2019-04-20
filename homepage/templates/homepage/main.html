@@ -24,12 +24,24 @@
         {% endif %}
       </ul>
       <div class="ml-auto">
-        <a href="#" class="btn btn-outline-secondary mx-2">Register</a>
-        <a href="#" class="btn btn-outline-secondary mx-2">Login</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="btn btn-outline-secondary mx-2">Profile</a>
+        <a href="{% url 'exit' %}" class="btn btn-outline-secondary mx-2">Exit</a>
+        {% else %}
+        <a href="{% url 'reg' %}" class="btn btn-outline-secondary mx-2">Register</a>
+        <a href="{% url 'login' %}" class="btn btn-outline-secondary mx-2">Login</a>
+        {% endif %}
+
       </div>
     </div>
   </nav>
-  <div class="container">{% block body %}{% endblock %}
+  <div class="container">
+    {% if messages %}
+    {% for mess in messages %}
+        <div class="alert alert-success">{{mess}}</div>
+    {% endfor %}
+    {% endif %}
+    {% block body %}{% endblock %}
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
       <div class="col-12 col-md">
